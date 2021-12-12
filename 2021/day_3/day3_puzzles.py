@@ -1,4 +1,5 @@
 
+from ctypes import LittleEndianStructure
 from os import getgrouplist
 
 
@@ -35,7 +36,7 @@ def get_life_support_rating(binaries, bit_num):
 
     else:
         for binary in binaries:
-            if binary[bit_num] > "0":
+            if binary[bit_num] == "1":
                 most_common += 1
             else:
                 most_common -= 1
@@ -44,10 +45,31 @@ def get_life_support_rating(binaries, bit_num):
             binaries = [binary for binary in binaries if binary[bit_num] == "1"]
         else:
             binaries = [binary for binary in binaries if binary[bit_num] == "0"]
-        
-    bit_num += 1
 
-    return get_life_support_rating(binaries, bit_num)    
+    bit_num += 1
+    return get_life_support_rating(binaries, bit_num)   
+
+
+def get_life_support_rating2(binaries, bit_num):
+    least_common = 0 
+
+    if len(binaries) == 1:
+        return binaries[0]
+
+    else:
+        for binary in binaries:
+            if binary[bit_num] == "1":
+                least_common += 1
+            else:
+                least_common -= 1
+
+        if least_common >= 0:
+            binaries = [binary for binary in binaries if binary[bit_num] == "0"]
+        else:
+            binaries = [binary for binary in binaries if binary[bit_num] == "1"]
+
+    bit_num += 1
+    return get_life_support_rating2(binaries, bit_num) 
 
 
 
@@ -56,3 +78,6 @@ def get_life_support_rating(binaries, bit_num):
 # print(get_power_consum(binaries))
 
 print(get_life_support_rating(binaries, 0))
+print(get_life_support_rating2(binaries, 0))
+
+print(int(get_life_support_rating(binaries, 0), 2) * int(get_life_support_rating2(binaries, 0), 2))
