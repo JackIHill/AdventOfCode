@@ -14,14 +14,6 @@ rows = [[int(i) for i in row.split()] for row in board.split('\n')]
 # boards = dict.fromkeys(range(len(boards_nested)))
 # boards = dict(zip(boards, boards_nested))
 
-# print(order)
-
-# for i, board in enumerate(boards_nested):
-#     for line in board:
-#         for n in line:
-#             print(n)
-
-# print(boards_nested)
 
 # print(order)
 print(board)
