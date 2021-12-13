@@ -21,15 +21,17 @@ def how_many_fish(days):
 # and how many fish there are for each of those days. Also leaving my original
 # solution here. 
 
-fish_counts = {}
-# set dict keys to number of days until birth
-for val in range(0, 9):
-    fish_counts[val] = 0
-# set dict values to number of fish for each of those days
-for fish in fishies:
-    fish_counts[fish] += 1
+
 
 def how_many_fish_better(days):
+    fish_counts = {}
+    # set dict keys to number of days until birth
+    for val in range(0, 9):
+        fish_counts[val] = 0
+    # set dict values to number of fish for each of those days
+    for fish in fishies:
+        fish_counts[fish] += 1
+
     for _ in range(days):
         # get starting number of fish at 0th day until birth, and initialise that to 0
         # each new day (as 'a 0 becomes a 6 and adds a new 8').
