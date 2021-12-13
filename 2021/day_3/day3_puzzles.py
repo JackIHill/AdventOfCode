@@ -1,8 +1,4 @@
 
-from ctypes import LittleEndianStructure
-from os import getgrouplist
-
-
 with open(r'2021/day_3/binaryinput.txt', 'r') as f:
     binaries = [line.strip() for line in f.readlines()]
 
@@ -28,8 +24,9 @@ def get_power_consum(binaries):
     return int(gamma_rate_bin, 2) * int(epsilon_bin, 2)
 
 
-def get_life_support_rating(binaries, bit_num):
+def oxy_co2_binary(binaries, bit_num, option):
     most_common = 0 
+    least_common = 0
 
     if len(binaries) == 1:
         return binaries[0]
@@ -38,46 +35,34 @@ def get_life_support_rating(binaries, bit_num):
         for binary in binaries:
             if binary[bit_num] == "1":
                 most_common += 1
+                least_common -= 1
             else:
                 most_common -= 1
-
-        if most_common >= 0:
-            binaries = [binary for binary in binaries if binary[bit_num] == "1"]
-        else:
-            binaries = [binary for binary in binaries if binary[bit_num] == "0"]
-
-    bit_num += 1
-    return get_life_support_rating(binaries, bit_num)   
-
-
-def get_life_support_rating2(binaries, bit_num):
-    least_common = 0 
-
-    if len(binaries) == 1:
-        return binaries[0]
-
-    else:
-        for binary in binaries:
-            if binary[bit_num] == "1":
                 least_common += 1
-            else:
-                least_common -= 1
 
-        if least_common >= 0:
-            binaries = [binary for binary in binaries if binary[bit_num] == "0"]
+        add_one_binary = [binary for binary in binaries if binary[bit_num] == "1"]
+        add_zero_binary = [binary for binary in binaries if binary[bit_num] == "0"]
+        
+        if option == 'most':
+            if most_common >= 0:
+                binaries = add_one_binary
+            else:
+                binaries = add_zero_binary 
+
+        elif option == 'least':
+            if least_common <= 0:
+                binaries = add_zero_binary
+            else:
+                binaries = add_one_binary
+
         else:
-            binaries = [binary for binary in binaries if binary[bit_num] == "1"]
+            return 'Enter a valid option ("most", or "least")'
 
     bit_num += 1
-    return get_life_support_rating2(binaries, bit_num) 
+    return oxy_co2_binary(binaries, bit_num, option)   
 
 
+def get_life_support_rating():
+    return (int(oxy_co2_binary(binaries, 0, 'most'), 2) * int(oxy_co2_binary(binaries, 0, 'least'), 2))
 
-    # return int(oxy_rating, 2) * int(co2_rating)
-
-# print(get_power_consum(binaries))
-
-print(get_life_support_rating(binaries, 0))
-print(get_life_support_rating2(binaries, 0))
-
-print(int(get_life_support_rating(binaries, 0), 2) * int(get_life_support_rating2(binaries, 0), 2))
+print(get_life_support_rating())
