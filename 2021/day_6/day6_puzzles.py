@@ -19,9 +19,7 @@ def how_many_fish(days):
 
 # Going to instead keep track of the days until a fish will birth a new,
 # and how many fish there are for each of those days. Also leaving my original
-# solution here. 
-
-
+# solution (part 1) here. 
 
 def how_many_fish_better(days):
     fish_counts = {}
