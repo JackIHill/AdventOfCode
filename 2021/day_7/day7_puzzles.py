@@ -30,9 +30,11 @@ def crabs(additive_fuel=True):
                     fuel = sum(range(abs(n-position) + 1))
                 else:
                     fuel = abs(n-position)
+                    
                 total_fuel += fuel
             best_fuel.add(total_fuel)
         pos += 1
+
         return (min(best_fuel))   
 
 print(crabs(additive_fuel=True))
