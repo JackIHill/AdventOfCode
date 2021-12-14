@@ -1,9 +1,10 @@
 
+from statistics import median
+
 with open('2021/day_7/crabinput.txt') as f:
     positions = [int(f) for f in f.readline().split(',')]
 
-from statistics import median
-import numpy as np
+
 # original solution
 def crab_part1():
     medians = median(positions)
@@ -29,7 +30,7 @@ def crabs(additive_fuel=True):
             if additive_fuel is True:
                 fuel = abs(n-position) * (abs(n-position) + 1) // 2
             else:
-                fuel = np.abs(n-position)
+                fuel = abs(n-position)
             total_fuel += fuel
         best_fuel.add(total_fuel)
     pos += 1
