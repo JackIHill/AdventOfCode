@@ -36,10 +36,8 @@ def num_1478():
 # print(num_1478())
 
 def decode_segments():
+    num_lens = {key: 0 for key in range(0, 10)}
     for i, seg in enumerate(segments):
         num_decoder = {key: '' for key in range(0, 10)}
-        for s in seg[0]:
-            print(num_decoder)
-            print(i, s)
 
 decode_segments()
