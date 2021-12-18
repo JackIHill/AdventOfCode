@@ -5,8 +5,8 @@ with open(r'2021/week_1/day_6/fishinput.txt', 'r') as f:
 def how_many_fish(days):
     day = 0
     while day < days:
-        for idx, fish in enumerate(fishies):
-            if fish > 0:
+        for idx in range(len(fishies)):
+            if fishies[idx] > 0:
                 fishies[idx] -= 1
             else:              
                 fishies[idx] = 6
