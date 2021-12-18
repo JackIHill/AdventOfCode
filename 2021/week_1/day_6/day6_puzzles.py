@@ -10,7 +10,7 @@ def how_many_fish(days):
                 fishies[idx] -= 1
             else:              
                 fishies[idx] = 6
-                fishies.append(9)
+                fishies.append(8)
         day += 1    
 
     return len(fishies)
@@ -24,8 +24,8 @@ def how_many_fish(days):
 def how_many_fish_better(days):
     fish_counts = {}
     # set dict keys to number of days until birth
-    for val in range(0, 9):
-        fish_counts[val] = 0
+    for key in range(0, 9):
+        fish_counts[key] = 0
     # set dict values to number of fish for each of those days
     for fish in fishies:
         fish_counts[fish] += 1
@@ -47,5 +47,5 @@ def how_many_fish_better(days):
 
     return sum(fish_counts.values())
 
-# print(how_many_fish(80))
-print(how_many_fish_better(256))
+print(how_many_fish(80))
+# print(how_many_fish_better(256))
