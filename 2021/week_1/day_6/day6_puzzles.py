@@ -1,5 +1,5 @@
 
-with open(r'2021/day_6/fishinput.txt', 'r') as f:
+with open(r'2021/week_1/day_6/fishinput.txt', 'r') as f:
     fishies = [int(i) for i in f.read().split(',')]
 
 def how_many_fish(days):
