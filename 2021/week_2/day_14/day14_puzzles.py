@@ -20,10 +20,9 @@ def pair_insertion(steps, poly, pairs):
     for _ in range(steps):
         new_poly = []
         chunks = [poly[i] + poly[i+1] for i in range(len(poly)-1)]
-        for i, c in enumerate(chunks):
-            for key, value in pairs.items():
-                if c == key:
-                    new_poly += c[0] + value
+        for c in chunks:
+            if c in pairs.keys():
+                new_poly += c[0] + pairs[c]
 
         new_poly.append(chunks[-1][1])
         poly = ''.join(new_poly)
