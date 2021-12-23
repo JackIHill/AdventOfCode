@@ -19,7 +19,7 @@ poly, pairs = base_poly_and_pairs()
 def pair_insertion(steps, poly, pairs):
     for _ in range(steps):
         new_poly = []
-        chunks = [poly[i] + poly[i+1] for i in range(len(poly)-1)]
+        chunks = [poly[i:i+2] for i in range(len(poly)-1)]
         for c in chunks:
             if c in pairs.keys():
                 new_poly += c[0] + pairs[c]
